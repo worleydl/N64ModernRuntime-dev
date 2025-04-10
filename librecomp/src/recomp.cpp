@@ -469,6 +469,8 @@ extern "C" void do_break(uint32_t vram) {
 }
 
 std::string current_game_mode_id;
+extern "C" __declspec(dllimport) void uwp_ProcessEvents();
+
 std::optional<std::u8string> current_game = std::nullopt;
 std::atomic<GameStatus> game_status = GameStatus::None;
 
@@ -855,6 +857,7 @@ void recomp::start(const recomp::Configuration& cfg) {
 
     while (!exited) {
         ultramodern::sleep_milliseconds(1);
+        uwp_ProcessEvents();
         if (gfx_callbacks.update_gfx != nullptr) {
             gfx_callbacks.update_gfx(gfx_data);
         }
