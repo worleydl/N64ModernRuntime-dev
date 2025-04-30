@@ -9,8 +9,8 @@ namespace recomp {
     // 512GB (kseg0 size)
     constexpr size_t mem_size = 512ULL * 1024ULL * 1024ULL;
     // 4GB (the full address space)
-    // DLW: Trimmed to 2GB
-    constexpr size_t allocation_size = 2048ULL * 1024ULL * 1024ULL;
+    // DLW: Trimmed to 512MB, 4k 4x MSAA is memory hungry
+    constexpr size_t allocation_size = 512ULL * 1024ULL * 1024ULL;
     // We need a place in rdram to hold the PI handles, so pick an address in extended rdram
     constexpr int32_t cart_handle = 0x80800000;
     constexpr int32_t drive_handle = (int32_t)(cart_handle + sizeof(OSPiHandle));
