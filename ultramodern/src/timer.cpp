@@ -174,9 +174,12 @@ extern "C" OSTime osGetTime() {
     return total_count;
 }
 
+// DLW: Multiple definition...possibly out of sync somewhere, bring this back if you end up missing the def
+#if 0
 extern "C" void osSetTime(OSTime t) {
     ostime_offset = time_now() - t;
 }
+#endif
 
 extern "C" int osSetTimer(RDRAM_ARG PTR(OSTimer) t_, OSTime countdown, OSTime interval, PTR(OSMesgQueue) mq, OSMesg msg) {
     OSTimer* t = TO_PTR(OSTimer, t_);
