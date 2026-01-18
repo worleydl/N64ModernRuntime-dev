@@ -10,6 +10,7 @@
 #include <ultramodern/save.hpp>
 
 namespace recomp {
+    using SaveType = ultramodern::SaveType;
     struct GameEntry {
         uint64_t rom_hash;
         std::string internal_name;
