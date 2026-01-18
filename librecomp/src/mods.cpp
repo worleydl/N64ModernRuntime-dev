@@ -3,7 +3,7 @@
 #include <sstream>
 #include <functional>
 
-#include "librecomp/files.hpp"
+#include <ultramodern/files.hpp>
 #include "librecomp/mods.hpp"
 #include "librecomp/overlays.hpp"
 #include "librecomp/game.hpp"
@@ -32,7 +32,7 @@ static bool read_json_with_backups(const std::filesystem::path &path, nlohmann::
     }
 
     // Try reading and parsing the backup file.
-    if (read_json(recomp::open_input_backup_file(path), json_out)) {
+    if (read_json(ultramodern::open_input_backup_file(path), json_out)) {
         return true;
     }
 
@@ -705,7 +705,7 @@ bool save_mods_config(const std::filesystem::path &path, const std::string& late
     config_json["mod_order"] = mod_order;
     config_json["latest_game_mode"] = latest_game_mode;
 
-    std::ofstream output_file = recomp::open_output_file_with_backup(path);
+    std::ofstream output_file = ultramodern::open_output_file_with_backup(path);
     if (!output_file.good()) {
         return false;
     }
@@ -713,7 +713,7 @@ bool save_mods_config(const std::filesystem::path &path, const std::string& late
     output_file << std::setw(4) << config_json;
     output_file.close();
 
-    return recomp::finalize_output_file_with_backup(path);
+    return ultramodern::finalize_output_file_with_backup(path);
 }
 
 void recomp::mods::ModContext::dirty_mod_configuration_thread_process() {

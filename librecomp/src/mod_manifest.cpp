@@ -3,8 +3,8 @@
 #include "json/json.hpp"
 
 #include "recompiler/context.h"
-#include "librecomp/files.hpp"
 #include "librecomp/mods.hpp"
+#include <ultramodern/files.hpp>
 
 recomp::mods::ZipModFileHandle::~ZipModFileHandle() {
     if (file_handle) {
