@@ -9,15 +9,6 @@
 #include <ultramodern/ultramodern.hpp>
 
 namespace recomp {
-    enum class SaveType {
-        None,
-        Eep4k,
-        Eep16k,
-        Sram,
-        Flashram,
-        AllowAll, // Allows all save types to work and reports eeprom size as 16kbit.
-    };
-
     struct GameEntry {
         uint64_t rom_hash;
         std::string internal_name;
@@ -124,7 +115,6 @@ namespace recomp {
     /// 
     void start(const Configuration& cfg);
 
-    SaveType get_save_type();
     bool eeprom_allowed();
     bool sram_allowed();
     bool flashram_allowed();
