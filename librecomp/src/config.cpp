@@ -1,5 +1,5 @@
 #include <fstream>
-#include "librecomp/files.hpp"
+#include "ultramodern/files.hpp"
 #include "librecomp/config.hpp"
 #include "librecomp/game.hpp"
 #include "librecomp/mods.hpp"
@@ -25,7 +25,7 @@ static bool read_json_with_backups(const std::filesystem::path& path, nlohmann::
     }
 
     // Try reading and parsing the backup file.
-    if (read_json(recomp::open_input_backup_file(path), json_out)) {
+    if (read_json(ultramodern::open_input_backup_file(path), json_out)) {
         return true;
     }
 
@@ -35,14 +35,14 @@ static bool read_json_with_backups(const std::filesystem::path& path, nlohmann::
 
 static bool save_json_with_backups(const std::filesystem::path& path, const nlohmann::json& json_data) {
     {
-        std::ofstream output_file = recomp::open_output_file_with_backup(path);
+        std::ofstream output_file = ultramodern::open_output_file_with_backup(path);
         if (!output_file.good()) {
             return false;
         }
 
         output_file << std::setw(4) << json_data;
     }
-    return recomp::finalize_output_file_with_backup(path);
+    return ultramodern::finalize_output_file_with_backup(path);
 }
 
 static std::filesystem::path get_path_to_config(bool is_mod_config) {
